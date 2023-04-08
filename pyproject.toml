@@ -1,0 +1,35 @@
+[tool.poetry]
+name = "pipes"
+version = "0.1.0"
+description = ""
+authors = ["chris-santiago <cjsantiago@gatech.edu>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.11"
+pandas = ">=1.0.0"
+
+
+[tool.poetry.group.qa.dependencies]
+ruff = "^0.0.261"
+black = "^23.3.0"
+pre-commit = "^3.2.2"
+isort = "^5.12.0"
+pytype = "^2023.3.31"
+pre-commit-hooks = "^4.4.0"
+
+
+[tool.poetry.group.tests.dependencies]
+pytest = "^7.2.2"
+pytest-cov = "^4.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.ruff]
+line-length = 100
+
+[tool.pytype]
+inputs = ['pipes']
