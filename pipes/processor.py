@@ -11,7 +11,10 @@ class PipeProcessor:
         self,
         funcs: T.Sequence[T.Callable],
         kwargs: T.Optional[
-            T.Union[T.Dict, T.Sequence[T.Dict[str, T.Union[str, T.Sequence[str]]]]]
+            T.Union[
+                T.Dict[str, T.Union[str, T.Sequence[str]]],
+                T.Sequence[T.Dict[str, T.Union[str, T.Sequence[str]]]]
+            ]
         ] = None,
     ):
         """
@@ -20,9 +23,7 @@ class PipeProcessor:
         Parameters
         ----------
         funcs: Sequence[Callable]
-            An iterable collection of user-defined functions. Function signatures should match
-            `func(df, cols)`, where `df` is a pandas.DataFrame and `cols` is an optional list of
-            columns to apply functions to.
+            An iterable collection of user-defined functions.
 
         kwargs: Optional[Union[Dict, Sequence[Dict[str, Union[str, Sequence[str]]]]
             An iterable collection of kwargs to apply respective functions to. If a single set
