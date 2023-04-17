@@ -13,7 +13,7 @@ class PipeProcessor:
         kwargs: T.Optional[
             T.Union[
                 T.Dict[str, T.Union[str, T.Sequence[str]]],
-                T.Sequence[T.Dict[str, T.Union[str, T.Sequence[str]]]]
+                T.Sequence[T.Dict[str, T.Union[str, T.Sequence[str]]]],
             ]
         ] = None,
     ):
