@@ -6,6 +6,8 @@ nav:
       - PipeProcessor: processor-ref.md
 theme:
   name: material
+  features:
+    - content.code.copy
 repo_url: https://github.com/chris-santiago/pipes
 plugins:
   - search
@@ -18,3 +20,14 @@ plugins:
             show_root_full_path: true
             show_submodules: true
             docstring_style: numpy
+            merge_init_into_class: true
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.details
