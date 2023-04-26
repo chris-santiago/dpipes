@@ -143,3 +143,4 @@ cython_debug/
 # Mac stuff
 .DS_Store
 /.ruff_cache/
+.pdm-python

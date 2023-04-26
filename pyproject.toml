@@ -1,31 +1,37 @@
-[tool.poetry]
+[tool.pdm]
+[tool.pdm.dev-dependencies]
+test = [
+    "pytest>=7.3.1",
+    "pytest-cov>=4.0.0",
+    "pandas>=2.0.1",
+]
+qa = [
+    "ruff>=0.0.263",
+    "black>=23.3.0",
+    "pre-commit>=3.2.2",
+    "isort>=5.12.0",
+    "pre-commit-hooks>=4.4.0",
+    "pyright>=1.1.304",
+    "nox>=2023.4.22",
+]
+
+[project]
 name = "pipes"
 version = "0.1.0"
 description = ""
-authors = ["chris-santiago <cjsantiago@gatech.edu>"]
+authors = [
+    {name = "Chris Santiago", email = "cjsantiago@gatech.edu"},
+]
+dependencies = [
+    "pandas>=1.0.0",
+]
+requires-python = ">=3.9"
 readme = "README.md"
-
-[tool.poetry.dependencies]
-python = ">=3.9,<3.11"
-
-
-[tool.poetry.group.qa.dependencies]
-ruff = "^0.0.261"
-black = "^23.3.0"
-pre-commit = "^3.2.2"
-isort = "^5.12.0"
-pre-commit-hooks = "^4.4.0"
-pyright = "^1.1.303"
-
-
-[tool.poetry.group.tests.dependencies]
-pytest = "^7.2.2"
-pytest-cov = "^4.0.0"
-pandas = "^2.0.1"
+license = {text = "MIT"}
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
 
 
 [tool.ruff]
