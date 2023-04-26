@@ -1,6 +1,8 @@
 site_name: Pipes
 nav:
   - Home: index.md
+  - Tutorials: tutorials.md
+  - How To's: how-to.md
   - Reference:
       - Pipeline: pipeline-ref.md
       - PipeProcessor: processor-ref.md
@@ -22,6 +24,7 @@ plugins:
             docstring_style: numpy
             merge_init_into_class: true
 markdown_extensions:
+  # For Code Blocks
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
@@ -29,5 +32,9 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
+  # For Admonitions
   - admonition
   - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg

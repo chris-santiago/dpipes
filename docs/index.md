@@ -1,5 +1,7 @@
 # Pipes - Pythonic Data Pipelines
 
+## About
+
 `Pipes` is a small project that came out of the desire to turn this:
 
 ```py
@@ -46,7 +48,7 @@ new_data = ps(new_data)
 
 ## Under the Hood
 
-`Pipes` uses two functions from the `functools` module: `reduce` and `partial`. The `reduce`
+`Pipes` uses two functions from Python's `functools` module: `reduce` and `partial`. The `reduce`
 function enables function composition; the `partial` function enables use of arbitrary `kwargs`.
 
 ## Generalization
