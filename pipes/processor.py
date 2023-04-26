@@ -62,6 +62,10 @@ class PipeProcessor:
 
 
 class ColumnPipeProcessor(PipeProcessor):
+    """
+    Class to sequentially process an arbitrary number of pandas.DataFrame.pipe functions by column.
+    """
+
     def __init__(
         self,
         funcs: T.Sequence[T.Callable],

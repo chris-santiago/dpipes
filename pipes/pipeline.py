@@ -50,6 +50,10 @@ def make_partials(
 
 
 class Pipeline:
+    """
+    Class to sequentially process an arbitrary number of functions.
+    """
+
     def __init__(
         self,
         funcs: T.Sequence[T.Callable],
