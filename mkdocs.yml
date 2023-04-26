@@ -1,0 +1,20 @@
+site_name: Pipes
+nav:
+  - Home: index.md
+  - Reference:
+      - Pipeline: pipeline-ref.md
+      - PipeProcessor: processor-ref.md
+theme:
+  name: material
+repo_url: https://github.com/chris-santiago/pipes
+plugins:
+  - search
+  - autorefs
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [ . ]
+          options:
+            show_root_full_path: true
+            show_submodules: true
+            docstring_style: numpy

@@ -24,7 +24,6 @@ class PipeProcessor:
         ----------
         funcs: Sequence[Callable]
             An iterable collection of user-defined functions.
-
         kwargs: Optional[Union[Dict, Sequence[Dict[str, Union[str, Sequence[str]]]]
             An iterable collection of kwargs to apply respective functions to. If a single set
             of kwargs is passed they will be broadcast across the sequence of functions.
@@ -77,7 +76,6 @@ class ColumnPipeProcessor(PipeProcessor):
             An iterable collection of user-defined functions. Function signatures should match
             `func(df, cols)`, where `df` is a pandas.DataFrame and `cols` is an optional list of
             columns to apply functions to.
-
         cols: Optional[Union[str, Sequence[Union[str, Sequence[str]]]
             An iterable collection of columns to apply respective functions to. If a single string
             or single list of strings is passed they will be broadcast across the sequence of
