@@ -63,6 +63,14 @@ That is, this:
 result = func_3(func_2(func_1(x)))
 ```
 
+or this:
+
+```py
+result = func_1(x)
+result = func_2(result)
+result = func_3(result)
+```
+
 becomes this:
 
 ```py
