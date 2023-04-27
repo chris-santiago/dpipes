@@ -1,6 +1,6 @@
 # Pipeline Module
 
-::: pipes.pipeline
+::: dpipes.pipeline
     options:
         members:
             - Pipeline

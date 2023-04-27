@@ -1,7 +1,7 @@
-import pipes
-
 import pandas as pd
 import pytest
+
+import dpipes
 
 
 def add_two(df, cols):
@@ -23,25 +23,25 @@ def add_five(df):
 
 class TestPipeProcessor:
     def test_broadcast_kwargs(self, data):
-        pl = pipes.PipeProcessor(funcs=[add_two, mult_two], kwargs={"cols": "a"})
+        pl = dpipes.PipeProcessor(funcs=[add_two, mult_two], kwargs={"cols": "a"})
         actual = pl(data)
         expected = pd.DataFrame({"a": [14, 24], "b": [2, 4]})
         pd.testing.assert_frame_equal(actual, expected)
 
     def test_no_kwargs_single(self, data):
-        pl = pipes.PipeProcessor(funcs=[add_five])
+        pl = dpipes.PipeProcessor(funcs=[add_five])
         actual = pl(data)
         expected = pd.DataFrame({"a": [10, 15], "b": [7, 9]})
         pd.testing.assert_frame_equal(actual, expected)
 
     def test_no_kwargs_multi(self, data):
-        pl = pipes.PipeProcessor(funcs=[add_five, add_five])
+        pl = dpipes.PipeProcessor(funcs=[add_five, add_five])
         actual = pl(data)
         expected = pd.DataFrame({"a": [15, 20], "b": [12, 14]})
         pd.testing.assert_frame_equal(actual, expected)
 
     def test_kwargs_single(self, data):
-        pl = pipes.PipeProcessor(
+        pl = dpipes.PipeProcessor(
             funcs=[add_two],
             kwargs=[
                 {"cols": ["a"]},
@@ -52,7 +52,7 @@ class TestPipeProcessor:
         pd.testing.assert_frame_equal(actual, expected)
 
     def test_kwargs_all(self, data):
-        pl = pipes.PipeProcessor(
+        pl = dpipes.PipeProcessor(
             funcs=[add_two, mult_two], kwargs=[{"cols": ["a", "b"]}, {"cols": "a"}]
         )
         actual = pl(data)
@@ -60,7 +60,7 @@ class TestPipeProcessor:
         pd.testing.assert_frame_equal(actual, expected)
 
     def test_kwargs_and_none(self, data):
-        pl = pipes.PipeProcessor(
+        pl = dpipes.PipeProcessor(
             funcs=[add_two, add_five], kwargs=[{"cols": ["a", "b"]}, None]
         )
         actual = pl(data)
@@ -69,7 +69,7 @@ class TestPipeProcessor:
 
     def test_bad_length_raises(self, data):
         with pytest.raises(ValueError) as exc:
-            pipes.PipeProcessor(
+            dpipes.PipeProcessor(
                 funcs=[add_two, add_five],
                 kwargs=[
                     {"cols": ["a", "b"]},
@@ -80,25 +80,25 @@ class TestPipeProcessor:
 
 class TestColumnPipeProcessor:
     def test_one_col(self, data):
-        pl = pipes.ColumnPipeProcessor(funcs=[add_two], cols="a")
+        pl = dpipes.ColumnPipeProcessor(funcs=[add_two], cols="a")
         actual = pl(data)
         expected = pd.DataFrame({"a": [7, 12], "b": [2, 4]})
         pd.testing.assert_frame_equal(actual, expected)
 
     def test_two_cols(self, data):
-        pl = pipes.ColumnPipeProcessor(funcs=[add_two], cols=["a", "b"])
+        pl = dpipes.ColumnPipeProcessor(funcs=[add_two], cols=["a", "b"])
         actual = pl(data)
         expected = pd.DataFrame({"a": [7, 12], "b": [4, 6]})
         pd.testing.assert_frame_equal(actual, expected)
 
     def test_mulit_one_col(self, data):
-        pl = pipes.ColumnPipeProcessor(funcs=[add_two, mult_two], cols="a")
+        pl = dpipes.ColumnPipeProcessor(funcs=[add_two, mult_two], cols="a")
         actual = pl(data)
         expected = pd.DataFrame({"a": [14, 24], "b": [2, 4]})
         pd.testing.assert_frame_equal(actual, expected)
 
     def test_multi_multi_col(self, data):
-        pl = pipes.ColumnPipeProcessor(
+        pl = dpipes.ColumnPipeProcessor(
             funcs=[add_two, mult_two], cols=["a", ["a", "b"]]
         )
         actual = pl(data)

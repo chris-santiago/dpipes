@@ -1,8 +1,8 @@
-# Pipes - Pythonic Data Pipelines
+# dPipes - Pythonic Data Pipelines
 
 ## About
 
-`Pipes` is a small project that came out of the desire to turn this:
+`dPipes` is a small project that came out of the desire to turn this:
 
 ```py
 import pandas as pd
@@ -16,7 +16,7 @@ data = (data.pipe(func_1)
 into this:
 
 ```py
-from pipes.processor import PipeProcessor
+from dpipes.processor import PipeProcessor
 
 ps = PipeProcessor(
     funcs=[func_1, func_2, func_3]
@@ -48,14 +48,14 @@ new_data = ps(new_data)
 
 ## Under the Hood
 
-`Pipes` uses two functions from Python's `functools` module: `reduce` and `partial`. The `reduce`
+`dPipes` uses two functions from Python's `functools` module: `reduce` and `partial`. The `reduce`
 function enables function composition; the `partial` function enables use of arbitrary `kwargs`.
 
 ## Generalization
 
-Although `Pipes` initially addressed `pd.DataFrame.pipe` method-chaining, it's extensible to any
+Although `dPipes` initially addressed `pd.DataFrame.pipe` method-chaining, it's extensible to any
 API that implements a pandas-like `DataFrame.pipe` method (e.g. Polars). Further, the 
-`pipes.pipeline` extends this composition to any arbitrary Python function.  
+`dpipes.pipeline` extends this composition to any arbitrary Python function.  
 
 That is, this:
 
@@ -74,7 +74,7 @@ result = func_3(result)
 becomes this:
 
 ```py
-from pipes.pipeline import Pipeline
+from dpipes.pipeline import Pipeline
 
 pl = Pipeline(funcs=[func_1, func_2, func_3])
 result = pl(x)

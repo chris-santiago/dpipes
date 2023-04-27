@@ -1,4 +1,4 @@
-site_name: Pipes
+site_name: dPipes
 nav:
   - Home: index.md
   - Tutorials: tutorials.md

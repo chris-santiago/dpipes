@@ -14,10 +14,10 @@ def tests(session):
 @nox.session(reuse_venv=True)
 def lint(session):
     session.run("pdm", "install", "-dG", "qa", external=True)
-    session.run("ruff", "pipes")
+    session.run("ruff", "dpipes")
 
 
 @nox.session(reuse_venv=True)
 def type_check(session):
     session.run("pdm", "install", "-dG", "qa", external=True)
-    session.run("pyright", "pipes")
+    session.run("pyright", "dpipes")
