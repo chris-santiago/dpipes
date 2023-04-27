@@ -33,6 +33,12 @@ requires-python = ">=3.9"
 readme = "README.md"
 license = {text = "MIT"}
 
+
+[project.urls]
+"Sourcecode" = "https://github.com/chris-santiago/dpipes"
+"Documentation" = "https://chris-santiago.github.io/dpipes/"
+
+
 [build-system]
 requires = ["setuptools>=61", "wheel"]
 build-backend = "setuptools.build_meta"
