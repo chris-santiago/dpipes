@@ -25,8 +25,12 @@ def add_order_total(df: pl.DataFrame) -> pl.DataFrame:
     return df.with_columns(order_total=pl.col("line_item_total").sum().over("invoice"))
 
 
-def add_total_order_size(df: pl.DataFrame) -> pl.DataFrame:
+def add_order_num_products(df: pl.DataFrame) -> pl.DataFrame:
     return df.with_columns(order_size=pl.count().over("invoice"))
+
+
+def add_total_order_size(df: pl.DataFrame) -> pl.DataFrame:
+    return df.with_columns(order_size=pl.col("quantity").sum().over("invoice"))
 
 
 ############################################################################
@@ -38,16 +42,23 @@ result_a = (
     data.pipe(clean_colnames)
     .pipe(add_line_total)
     .pipe(add_order_total)
+    .pipe(add_order_num_products)
     .pipe(add_total_order_size)
 )
 
 # PipeProcessor
 ps = PipeProcessor(
-    [clean_colnames, add_line_total, add_order_total, add_total_order_size]
+    [
+        clean_colnames,
+        add_line_total,
+        add_order_total,
+        add_order_num_products,
+        add_total_order_size,
+    ]
 )
 result_b = ps(data)
 
-pl.testing.assert_frame_equal(result_a, result_b)
+testing.assert_frame_equal(result_a, result_b)
 
 
 ############################################################################
@@ -62,6 +73,7 @@ for ds in [split_1, split_2, split_3]:
         ds.pipe(clean_colnames)
         .pipe(add_line_total)
         .pipe(add_order_total)
+        .pipe(add_order_num_products)
         .pipe(add_total_order_size)
     )
 
@@ -95,15 +107,13 @@ result_a = (
     data.pipe(clean_colnames)
     .pipe(add_line_total)
     .pipe(add_order_total)
+    .pipe(add_order_num_products)
     .pipe(add_total_order_size)
     .pipe(lambda x: float_to_int(x, "customer_id"))
     .pipe(lambda x: int_to_string(x, "customer_id"))
 )
 
 # PipeProcessor
-ps = PipeProcessor(
-    [clean_colnames, add_line_total, add_order_total, add_total_order_size]
-)
 col_ps = PipeProcessor([float_to_int, int_to_string], {"cols": "customer_id"})
 pipeline = PipeProcessor([ps, col_ps])
 
@@ -112,9 +122,6 @@ result_b = pipeline(data)
 testing.assert_frame_equal(result_a, result_b)
 
 # ColumnPiperProcessor
-ps = PipeProcessor(
-    [clean_colnames, add_line_total, add_order_total, add_total_order_size]
-)
 col_ps = ColumnPipeProcessor([float_to_int, int_to_string], cols="customer_id")
 pipeline = PipeProcessor([ps, col_ps])
 

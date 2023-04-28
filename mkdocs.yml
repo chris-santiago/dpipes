@@ -1,7 +1,10 @@
 site_name: dPipes
 nav:
   - Home: index.md
-  - Tutorials: tutorials.md
+  - Getting Started: getting-started.md
+  - Tutorials:
+      - Pandas: tutorial-pandas.md
+      - Polars: tutorial-polars.md
   - How To's: how-to.md
   - Reference:
       - Pipeline: pipeline-ref.md
@@ -14,6 +17,7 @@ repo_url: https://github.com/chris-santiago/pipes
 plugins:
   - search
   - autorefs
+  - table-reader
   - mkdocstrings:
       handlers:
         python:

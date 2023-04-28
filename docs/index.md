@@ -55,7 +55,7 @@ function enables function composition; the `partial` function enables use of arb
 
 Although `dPipes` initially addressed `pd.DataFrame.pipe` method-chaining, it's extensible to any
 API that implements a pandas-like `DataFrame.pipe` method (e.g. Polars). Further, the 
-`dpipes.pipeline` extends this composition to any arbitrary Python function.  
+[dpipes.pipeline module](pipeline-ref.md) extends this composition to any arbitrary Python function.  
 
 That is, this:
 
