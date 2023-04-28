@@ -145,3 +145,4 @@ cython_debug/
 /.ruff_cache/
 .pdm-python
 /build/
+/examples/online_retail_II.xlsx
