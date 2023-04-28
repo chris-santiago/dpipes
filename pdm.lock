@@ -237,6 +237,18 @@ requires_python = ">=3.7"
 summary = "Extension pack for Python Markdown and MkDocs Material."
 
 [[package]]
+name = "mkdocs-table-reader-plugin"
+version = "2.0"
+requires_python = ">=3.6"
+summary = "MkDocs plugin to directly insert tables from files into markdown."
+dependencies = [
+    "PyYAML>=5.4.1",
+    "mkdocs>=1.0",
+    "pandas>=1.1",
+    "tabulate>=0.8.7",
+]
+
+[[package]]
 name = "mkdocstrings"
 version = "0.21.2"
 requires_python = ">=3.7"
@@ -503,6 +515,12 @@ requires_python = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
 summary = "Python 2 and 3 compatibility utilities"
 
 [[package]]
+name = "tabulate"
+version = "0.9.0"
+requires_python = ">=3.7"
+summary = "Pretty-print tabular data"
+
+[[package]]
 name = "tomli"
 version = "2.0.1"
 requires_python = ">=3.7"
@@ -552,7 +570,7 @@ summary = "Backport of pathlib-compatible object wrapper for zip files"
 [metadata]
 lock_version = "4.2"
 groups = ["default", "docs", "qa", "test", "tests"]
-content_hash = "sha256:72dac899a9240a6465f45666ca58fbe1686ac28b0392479ef8fda0155701d88e"
+content_hash = "sha256:00d55fb53453d3ad47af417ec05cc0be986355c0d32bf6af7530809e12d6757a"
 
 [metadata.files]
 "argcomplete 3.0.8" = [
@@ -859,6 +877,10 @@ content_hash = "sha256:72dac899a9240a6465f45666ca58fbe1686ac28b0392479ef8fda0155
 "mkdocs-material-extensions 1.1.1" = [
     {url = "https://files.pythonhosted.org/packages/cd/3f/e5e3c9bfbb42e4cb661f71bcec787ae6bdf4a161b8c4bb68fd7d991c436c/mkdocs_material_extensions-1.1.1.tar.gz", hash = "sha256:9c003da71e2cc2493d910237448c672e00cefc800d3d6ae93d2fc69979e3bd93"},
     {url = "https://files.pythonhosted.org/packages/fd/c9/35af8ceabace3e33d1fb64b1749c6f4dac6129faa32f8a4229791f89f56a/mkdocs_material_extensions-1.1.1-py3-none-any.whl", hash = "sha256:e41d9f38e4798b6617ad98ca8f7f1157b1e4385ac1459ca1e4ea219b556df945"},
+]
+"mkdocs-table-reader-plugin 2.0" = [
+    {url = "https://files.pythonhosted.org/packages/37/fc/7a17d34ff4d07cf8edc6e00cfe37dd21b682e8bccfc3be29a0c2246f880d/mkdocs_table_reader_plugin-2.0-py3-none-any.whl", hash = "sha256:c3d3b063a19e5a619f6062cb5963bd3d04c1f4e4f5d4ff75d9e33f3e79a1d535"},
+    {url = "https://files.pythonhosted.org/packages/af/3e/0c09597972bc17ef35331916bab6f77cca5374b2708f5304e92281acc5cc/mkdocs-table-reader-plugin-2.0.tar.gz", hash = "sha256:cb2f5ca1b666e4a7452d196810558ba815f597de01822686c2208d57cb21f9d2"},
 ]
 "mkdocstrings 0.21.2" = [
     {url = "https://files.pythonhosted.org/packages/04/ca/7630aa270d8af95eadccc13836e5471a0d639d41555ec894e78a83d1a4cd/mkdocstrings-0.21.2-py3-none-any.whl", hash = "sha256:949ef8da92df9d692ca07be50616459a6b536083a25520fd54b00e8814ce019b"},
@@ -1181,6 +1203,10 @@ content_hash = "sha256:72dac899a9240a6465f45666ca58fbe1686ac28b0392479ef8fda0155
 "six 1.16.0" = [
     {url = "https://files.pythonhosted.org/packages/71/39/171f1c67cd00715f190ba0b100d606d440a28c93c7714febeca8b79af85e/six-1.16.0.tar.gz", hash = "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926"},
     {url = "https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},
+]
+"tabulate 0.9.0" = [
+    {url = "https://files.pythonhosted.org/packages/40/44/4a5f08c96eb108af5cb50b41f76142f0afa346dfa99d5296fe7202a11854/tabulate-0.9.0-py3-none-any.whl", hash = "sha256:024ca478df22e9340661486f85298cff5f6dcdba14f3813e8830015b9ed1948f"},
+    {url = "https://files.pythonhosted.org/packages/ec/fe/802052aecb21e3797b8f7902564ab6ea0d60ff8ca23952079064155d1ae1/tabulate-0.9.0.tar.gz", hash = "sha256:0095b12bf5966de529c0feb1fa08671671b3368eec77d7ef7ab114be2c068b3c"},
 ]
 "tomli 2.0.1" = [
     {url = "https://files.pythonhosted.org/packages/97/75/10a9ebee3fd790d20926a90a2547f0bf78f371b2f13aa822c759680ca7b9/tomli-2.0.1-py3-none-any.whl", hash = "sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc"},

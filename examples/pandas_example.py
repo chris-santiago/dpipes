@@ -28,8 +28,13 @@ def add_order_total(df: pd.DataFrame) -> pd.DataFrame:
     return df.merge(order_total, how="left", on="invoice")
 
 
+def add_order_num_products(df: pd.DataFrame) -> pd.DataFrame:
+    num_products = df.groupby("invoice").size().reset_index(name="order_num_products")
+    return df.merge(num_products, how="left", on="invoice")
+
+
 def add_total_order_size(df: pd.DataFrame) -> pd.DataFrame:
-    order_size = df.groupby("invoice").size().reset_index(name="order_size")
+    order_size = df.groupby("invoice")["quantity"].sum().reset_index(name="order_size")
     return df.merge(order_size, how="left", on="invoice")
 
 
@@ -37,17 +42,32 @@ def add_total_order_size(df: pd.DataFrame) -> pd.DataFrame:
 # Basic Example
 ############################################################################
 
+naive = clean_colnames(data)
+naive = add_line_total(naive)
+naive = add_order_total(naive)
+naive = add_order_num_products(naive)
+naive = add_total_order_size(naive)
+
 # Method chaining
 result_a = (
     data.pipe(clean_colnames)
     .pipe(add_line_total)
     .pipe(add_order_total)
+    .pipe(add_order_num_products)
     .pipe(add_total_order_size)
 )
 
+pd.testing.assert_frame_equal(naive, result_a)
+
 # PipeProcessor
 ps = PipeProcessor(
-    [clean_colnames, add_line_total, add_order_total, add_total_order_size]
+    [
+        clean_colnames,
+        add_line_total,
+        add_order_total,
+        add_order_num_products,
+        add_total_order_size,
+    ]
 )
 result_b = ps(data)
 
@@ -70,6 +90,7 @@ for ds in [split_1, split_2, split_3]:
         ds.pipe(clean_colnames)
         .pipe(add_line_total)
         .pipe(add_order_total)
+        .pipe(add_order_num_products)
         .pipe(add_total_order_size)
     )
 
@@ -105,15 +126,13 @@ result_a = (
     data.pipe(clean_colnames)
     .pipe(add_line_total)
     .pipe(add_order_total)
+    .pipe(add_order_num_products)
     .pipe(add_total_order_size)
     .pipe(lambda x: float_to_int(x, "customer_id"))
     .pipe(lambda x: int_to_string(x, "customer_id"))
 )
 
 # PipeProcessor
-ps = PipeProcessor(
-    [clean_colnames, add_line_total, add_order_total, add_total_order_size]
-)
 col_ps = PipeProcessor([float_to_int, int_to_string], {"cols": "customer_id"})
 pipeline = PipeProcessor([ps, col_ps])
 
@@ -122,9 +141,6 @@ result_b = pipeline(data)
 pd.testing.assert_frame_equal(result_a, result_b)
 
 # ColumnPiperProcessor
-ps = PipeProcessor(
-    [clean_colnames, add_line_total, add_order_total, add_total_order_size]
-)
 col_ps = ColumnPipeProcessor([float_to_int, int_to_string], cols="customer_id")
 pipeline = PipeProcessor([ps, col_ps])
 
