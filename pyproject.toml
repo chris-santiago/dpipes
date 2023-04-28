@@ -4,8 +4,6 @@ test = [
     "pytest>=7.3.1",
     "pytest-cov>=4.0.0",
     "pandas>=2.0.1",
-    "openpyxl>=3.1.2",
-    "polars>=0.17.9",
 ]
 qa = [
     "ruff>=0.0.263",
@@ -42,6 +40,12 @@ license = {text = "MIT"}
 "Documentation" = "https://chris-santiago.github.io/dpipes/"
 
 
+[project.optional-dependencies]
+demo = [
+    "polars>=0.17.9",
+    "openpyxl>=3.1.2",
+    "nltk>=3.8.1",
+]
 [build-system]
 requires = ["setuptools>=61", "wheel"]
 build-backend = "setuptools.build_meta"
