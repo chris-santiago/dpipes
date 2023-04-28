@@ -267,6 +267,9 @@ pd.testing.assert_frame_equal(result_a, result_b)
     Note that we only passed a single dictionary to the `dpipes.PipeProcessor` constructor, and it
     broadcast those keyword arguments to both functions within the pipeline.
 
+**Although both methods produce identical results, only the use of `PipeProcessor` provides a reusable,
+modular pipeline object.**
+
 ### ColumnPipeProcessor
 
 Finally, if the only keyword arguments to our transformation functions are column names, we can 

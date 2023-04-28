@@ -2,8 +2,8 @@
 
 ## About
 
-`dPipes` is a Python package for creating Pythonic, modular data pipelines. It's small project that came 
-out of the desire to turn this:
+`dPipes` is a Python package for creating **reusable, modular, and composable** data pipelines. 
+It's small project that came out of the desire to turn this:
 
 ```py
 import pandas as pd
@@ -30,6 +30,32 @@ Although `dPipes` initially addressed `pd.DataFrame.pipe` method-chaining, it's 
 API that implements a pandas-like `DataFrame.pipe` method (e.g. Polars). 
 
 Further, the [dpipes.pipeline module](pipeline-ref.md) extends this composition to any arbitrary Python function.
+
+That is, this:
+
+```py
+result = func_3(func_2(func_1(x)))
+```
+
+or this:
+
+```py
+result = func_1(x)
+result = func_2(result)
+result = func_3(result)
+```
+
+becomes this:
+
+```py
+from dpipes.pipeline import Pipeline
+
+pl = Pipeline(funcs=[func_1, func_2, func_3])
+result = pl(x)
+```
+
+which is, arguably, more readable and, once again, easier to apply to other objects.
+
 
 ## Installation
 

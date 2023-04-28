@@ -2,7 +2,8 @@
 
 ## About
 
-`dPipes` is a small project that came out of the desire to turn this:
+`dPipes` is a Python package for creating **reusable, modular, and composable** data pipelines. 
+It's small project that came out of the desire to turn this:
 
 ```py
 import pandas as pd

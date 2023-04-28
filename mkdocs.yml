@@ -3,8 +3,8 @@ nav:
   - Home: index.md
   - Getting Started: getting-started.md
   - Tutorials:
-      - Pandas: tutorial-pandas.md
-      - Polars: tutorial-polars.md
+      - Pandas Pipelines: tutorial-pandas.md
+      - Polars Pipelines: tutorial-polars.md
   - How To's: how-to.md
   - Reference:
       - Pipeline: pipeline-ref.md
