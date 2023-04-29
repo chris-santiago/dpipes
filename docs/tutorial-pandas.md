@@ -1,4 +1,4 @@
-# Pandas Tutorial
+# Pandas PipeProcessor Tutorial
 
 ## Basic Example
 

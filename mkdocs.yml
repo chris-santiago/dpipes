@@ -5,6 +5,7 @@ nav:
   - Tutorials:
       - Pandas Pipelines: tutorial-pandas.md
       - Polars Pipelines: tutorial-polars.md
+      - General Pipelines: tutorial-general.md
   - How To's: how-to.md
   - Reference:
       - Pipeline: pipeline-ref.md
@@ -13,6 +14,7 @@ theme:
   name: material
   features:
     - content.code.copy
+    - content.code.annotate
 repo_url: https://github.com/chris-santiago/pipes
 plugins:
   - search

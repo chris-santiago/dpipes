@@ -1,9 +1,10 @@
-# Polars Tutorial
+# Polars PipeProcessor Tutorial
 
 !!! note
 
     This tutorial assumes that you have [Polars](https://www.pola.rs/) installed in your Python 
-    environment.
+    environment. You can install `Polars` and other tutorial dependencies by executing the command
+    `pip install dpipes[demo]`.
 
 As mentioned in [Getting Started](getting-started.md), `dpipes.PipeProcessor` is extensible to any 
 API that implements a Pandas-like `DataFrame.pipe` method.
