@@ -22,7 +22,7 @@ docs = [
 
 [project]
 name = "dpipes"
-version = "0.1.0"
+version = "0.1.1"
 description = "dPipes - Pythonic Data Pipelines"
 authors = [
     {name = "Chris Santiago", email = "cjsantiago@gatech.edu"},

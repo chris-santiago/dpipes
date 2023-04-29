@@ -1,64 +1,18 @@
 import functools
 import typing as T
 
+from dpipes.pipeline import Pipeline, make_partials
 
-class PipeProcessor:
+
+class PipeProcessor(Pipeline):
     """
     Class to sequentially process an arbitrary number of pandas.DataFrame.pipe functions.
     """
 
-    def __init__(
-        self,
-        funcs: T.Sequence[T.Callable],
-        kwargs: T.Optional[
-            T.Union[
-                T.Dict[str, T.Union[str, T.Sequence[str]]],
-                T.Sequence[T.Dict[str, T.Union[str, T.Sequence[str]]]],
-            ]
-        ] = None,
-    ):
-        """
-        Instantiate processor.
-
-        Parameters
-        ----------
-        funcs: Sequence[Callable]
-            An iterable collection of user-defined functions.
-        kwargs: Optional[Union[Dict, Sequence[Dict[str, Union[str, Sequence[str]]]]
-            An iterable collection of kwargs to apply respective functions to. If a single set
-            of kwargs is passed they will be broadcast across the sequence of functions.
-
-        Returns
-        -------
-        pd.DataFrame
-            A processed DataFrame.
-        """
-        if kwargs:
-            # broadcast single dict
-            if isinstance(kwargs, dict):
-                self.funcs = [functools.partial(f, **kwargs) for f in funcs]
-
-            else:
-                self._check_args(funcs, kwargs)
-                self.funcs = [
-                    functools.partial(f, **kw) if kw else f
-                    for f, kw in zip(funcs, kwargs)
-                ]
-        else:
-            self.funcs = funcs
-
     def __call__(self, df):
+        if self.kwargs:
+            self.funcs = make_partials(self.funcs, self.kwargs)
         return functools.reduce(lambda _df, trans: _df.pipe(trans), self.funcs, df)
-
-    @staticmethod
-    def _check_args(funcs, args):
-        if len(funcs) != len(args):
-            raise ValueError(
-                f"""
-                Length of `kwargs` must match length of `funcs`.
-                Expected {len(funcs)} collections of kwargs, only got {len(args)}.
-                """
-            )
 
 
 class ColumnPipeProcessor(PipeProcessor):
