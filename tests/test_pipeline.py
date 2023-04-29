@@ -1,4 +1,5 @@
 import pandas as pd
+import pytest
 
 from dpipes.pipeline import Pipeline
 
@@ -28,12 +29,33 @@ class TestPipeline:
         actual = pl(z)
         assert expected == actual
 
-    def test_kwargs(self):
+    def test_equal_kwargs(self):
         z = pd.DataFrame({"a": [2, 2], "b": [2, 2]})
 
         pl = Pipeline(
             funcs=[df_add, df_add, df_mult, df_add],
             kwargs=[{"x": 2}, {"x": 2}, {"x": 2}, {"x": 2}],
+        )
+
+        expected = df_add(df_mult(df_add(df_add(z, 2), 2), 2), 2)
+        actual = pl(z)
+        pd.testing.assert_frame_equal(expected, actual)
+
+    def test_too_few_kwargs_raises(self):
+        pd.DataFrame({"a": [2, 2], "b": [2, 2]})
+
+        with pytest.raises(ValueError):
+            Pipeline(
+                funcs=[df_add, df_add, df_mult, df_add],
+                kwargs=[{"x": 2}, {"x": 2}, {"x": 2}],
+            )
+
+    def test_broadcast_kwargs(self):
+        z = pd.DataFrame({"a": [2, 2], "b": [2, 2]})
+
+        pl = Pipeline(
+            funcs=[df_add, df_add, df_mult, df_add],
+            kwargs={"x": 2},
         )
 
         expected = df_add(df_mult(df_add(df_add(z, 2), 2), 2), 2)
