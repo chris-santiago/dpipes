@@ -52,6 +52,7 @@ def make_partials(
         A sequence of partial functions.
     """
     if isinstance(kwargs, dict):
+        # broadcast single dict
         return [functools.partial(f, **kwargs) for f in funcs]
     return [functools.partial(f, **kw) if kw else f for f, kw in zip(funcs, kwargs)]
 
