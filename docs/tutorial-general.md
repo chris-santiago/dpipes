@@ -189,7 +189,7 @@ print(result)
 ```
 
 ```zsh title="Output"
-['hello', 'gabe_flomo', 'still', 'want', 'u', 'hit', 'new', 'sushi', 'spot', 'lmk', "'re", 'free', 'cuz', 'ca', "n't", 'go', 'next', 'weekend', 'since', "'ll", 'swimming', 'sushibros', 'rawfish']
+>>> ['hello', 'gabe_flomo', 'still', 'want', 'u', 'hit', 'new', 'sushi', 'spot', 'lmk', "'re", 'free', 'cuz', 'ca', "n't", 'go', 'next', 'weekend', 'since', "'ll", 'swimming', 'sushibros', 'rawfish']
 ```
 
 ## Processing Custom Objects
